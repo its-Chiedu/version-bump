@@ -46,7 +46,37 @@ Pre-alpha caveats:
 
 ## Contributing / issues
 
-Source: `<github-url-tbd>`. License: MIT (see [`LICENSE`](LICENSE)). Copyright © 2026 Drawing Board Apps LLC.
+Source: <https://github.com/its-Chiedu/version-bump>. License: MIT (see [`LICENSE`](LICENSE)). Copyright © 2026 Drawing Board Apps LLC.
+
+## Publishing (maintainers)
+
+Alpha releases go to the Gradle Plugin Portal (android + kmp) and RubyGems (ios) from a local workstation. Each subproject is version-bumped manually in its build file before publishing.
+
+**Gradle plugins** — requires a Plugin Portal API key + secret from <https://plugins.gradle.org/user> (set once in `~/.gradle/gradle.properties` as `gradle.publish.key` and `gradle.publish.secret`, or pass via `-P` on the command line):
+
+```bash
+# Android plugin
+cd android && ./gradlew publishPlugins
+
+# KMP plugin
+cd kmp && ./gradlew publishPlugins
+```
+
+**Fastlane plugin gem** — requires a RubyGems API key in `~/.gem/credentials`:
+
+```bash
+cd ios
+bundle install
+bundle exec rake build         # builds pkg/fastlane-plugin-version_bump-X.Y.Z.gem
+gem push pkg/fastlane-plugin-version_bump-*.gem
+```
+
+**Tag after all three succeed:**
+
+```bash
+git tag v0.1.0-alpha01
+git push origin v0.1.0-alpha01
+```
 
 ## Related
 
