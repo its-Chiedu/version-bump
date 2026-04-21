@@ -1,0 +1,23 @@
+# Gradle
+.gradle/
+build/
+out/
+**/build/
+**/.gradle/
+**/out/
+
+# IntelliJ / Xcode / VSCode
+.idea/
+*.iml
+.vscode/
+.DS_Store
+
+# Ruby / Bundler
+Gemfile.lock
+*.gem
+.bundle/
+vendor/bundle/
+coverage/
+
+# Kotlin
+*.hprof
